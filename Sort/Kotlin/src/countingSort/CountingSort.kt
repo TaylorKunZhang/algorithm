@@ -1,12 +1,17 @@
 package countingSort
 
 fun countingSort(arr: IntArray) {
-    if (arr.isEmpty()) return
+    if (arr.size < 2) return
     var min = arr[0]
     var max = arr[0]
-    for (value in arr) {
-        if (value < min) min = value
-        if (value > max) max = value
+    var num: Int
+    for (i in 1 until arr.size) {
+        num = arr[i]
+        if (num < min) {
+            min = num
+        } else if (num > max) {
+            max = num
+        }
     }
 
     val cArr = IntArray(max - min + 1) { 0 }
@@ -18,9 +23,10 @@ fun countingSort(arr: IntArray) {
     }
 
     val bArr = IntArray(arr.size)
+    var index: Int
     for (i in arr.indices) {
-        val num = arr[i]
-        val index = --cArr[num - min]
+        num = arr[i]
+        index = --cArr[num - min]
         bArr[index] = num
     }
     for (i in arr.indices) {
