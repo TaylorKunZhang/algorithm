@@ -18,20 +18,17 @@ private fun solution1(root: TreeNode?, list: ArrayList<Int>) {
 }
 
 fun preorderTraversal2(root: TreeNode?): List<Int> {
-    var node = root
-    val stack = Stack<TreeNode>()
     val list = ArrayList<Int>()
-    while (node != null) {
-        while (node != null) {
-            list.add(node.`val`)
-            if (node.right != null) {
-                stack.push(node.right)
-            }
-            node = node.left
-        }
-        if (stack.isNotEmpty()) {
-            node = stack.pop()
-        }
+    if (root == null) return list
+
+    var node: TreeNode?
+    val stack = Stack<TreeNode>()
+    stack.push(root)
+    while (stack.isNotEmpty()) {
+        node = stack.pop()
+        list.add(node.`val`)
+        if (node.right != null) stack.push(node.right)
+        if (node.left != null) stack.push(node.left)
     }
     return list
 }
