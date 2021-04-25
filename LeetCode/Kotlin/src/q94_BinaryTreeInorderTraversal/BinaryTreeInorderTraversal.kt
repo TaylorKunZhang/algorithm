@@ -24,11 +24,9 @@ fun inorderTraversal2(root: TreeNode?): List<Int> {
             stack.push(node)
             node = node.left
         }
-        if (stack.isNotEmpty()) {
-            node = stack.pop()
-            list.add(node.`val`)
-            node = node.right
-        }
+        node = stack.pop()
+        list.add(node.`val`)
+        node = node.right
     }
     return list
 }
